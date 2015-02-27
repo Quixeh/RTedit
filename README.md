@@ -1,1 +1,3 @@
 # RTedit
+
+RTedit is a Qt 5.4 based DICOM-RT editor in its very early stages...
