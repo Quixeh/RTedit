@@ -13,8 +13,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    DCMFile.cpp \
+    DCMHeader.cpp \
+    DCMElement.cpp \
+    DCMImage.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    DCMFile.h \
+    DCMHeader.h \
+    DCMElement.h \
+    DCMImage.h
 
 FORMS    += mainwindow.ui
