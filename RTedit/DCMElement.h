@@ -19,6 +19,8 @@ class DCMElement {
         QString getValue();
 
         bool updateFromDictionary();
+        void clear();
+        void printToDebug();
 
     private:
         QString tag;

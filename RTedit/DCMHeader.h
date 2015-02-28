@@ -12,15 +12,17 @@ class DCMHeader : public DCMFile {
         void import();
 
     private:
-        std::vector<DCMElement> elements;
+        std::vector<DCMElement*> elements;
         DCMElement* curElement;
 
         bool readTag(int = 0);
         bool readTagReturn(int = 0);
         bool readVR();
-        bool readVL();
-        bool readValue();
+        bool readVL(int = 0, bool = false);
+        bool readValue(int = 0, bool = false);
 
+        int byteOrder;
+        bool implicit;
     protected:
 
 };

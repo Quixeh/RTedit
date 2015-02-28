@@ -101,7 +101,7 @@ void DCMFile::byte_to_2nibbles(const unsigned char byte, unsigned char * hiNib, 
 QString DCMFile::readStr(int vL){
     std::stringstream ss;
     if (vL){ // VL can be zero
-        unsigned char bytes[64];
+        /*unsigned char bytes[64];
         if (!fread(bytes, 1, vL, fid)){
             qDebug() << "Error: Could not read file." << endl;
             return ""; // End of file
@@ -109,7 +109,20 @@ QString DCMFile::readStr(int vL){
 
         for (int i = 0; i<vL; i++){
             ss << bytes[i];
-        }
+        }*/
+
+        QByteArray bytes = QByteArray(vL, '\0');
+                if (!fread(bytes.data(), 1, vL, fid)){
+                    qDebug() << "File Error";
+                    return "";
+                }
+
+                QList<QByteArray> list = bytes.split('\\');
+
+                foreach(QByteArray byteArr, list) {
+                    //if (!(o->pCheckVLCharacterRepertoire)( o, byteArr)) ERR_MSG_RTN_FLS;
+                    ss << std::string(byteArr);
+                }
     }
 
     QString value = QString::fromStdString(ss.str());

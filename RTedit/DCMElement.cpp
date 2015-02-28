@@ -5,9 +5,18 @@
 #include <fstream>
 
 DCMElement::DCMElement(){
+    clear();
 }
 
 DCMElement::~DCMElement(){
+}
+
+void DCMElement::clear(){
+    tag = "";
+    vr = "";
+    vl = 0;
+    value = "";
+    description = "";
 }
 
 QString DCMElement::getTag(){
@@ -24,6 +33,7 @@ QString DCMElement::getVR(){
 
 void DCMElement::setVR(QString newVR){
     vr = newVR;
+    vr.truncate(2);
 }
 
 int DCMElement::getVL(){
@@ -54,15 +64,25 @@ bool DCMElement::updateFromDictionary(){
     // open file to search
     fileInput.open("dcmdict.txt");
 
+    description = "---";
+    setVR("UN");
+
     unsigned int curLine = 0;
     while(getline(fileInput, line)) {
         curLine++;
         if (line.find(search, 0) != std::string::npos) {
             //cout << "found: " << search << "line: " << curLine << endl;
-            qDebug() << QString::fromStdString(line);
+            QString result = QString::fromStdString(line);
             fileInput.close();
+            description = result.mid(17);
+            description.chop(2);
+            setVR(result.mid(12,2));
             return true;
         }
     }
     return false;
+}
+
+void DCMElement::printToDebug(){
+    qDebug() << tag << " " << vr << " " << vl << " " << description << " " << value;
 }
