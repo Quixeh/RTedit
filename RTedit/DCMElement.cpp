@@ -75,7 +75,7 @@ bool DCMElement::updateFromDictionary(){
             QString result = QString::fromStdString(line);
             fileInput.close();
             description = result.mid(17);
-            description.chop(2);
+            description.chop(1);
             setVR(result.mid(12,2));
             return true;
         }
