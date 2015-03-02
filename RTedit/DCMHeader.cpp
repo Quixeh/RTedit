@@ -2,11 +2,20 @@
 #include "DCMElement.h"
 #include <QDebug>
 #include <sstream>
+#include <qimage.h>
+#include <qrgb.h>
+#include <DCMImage.h>
 
 DCMHeader::DCMHeader(){
     curElement = new DCMElement();
     byteOrder = 0;
     implicit = false;
+
+    for (int x = 0; x< 512; x++){
+        for (int y = 0; y< 512; y++){
+            pixelData[x][y] = 0;
+        }
+    }
 }
 
 DCMHeader::~DCMHeader(){
@@ -175,6 +184,7 @@ void DCMHeader::import(){
             readValue();
 
             curElement->printToDebug();
+            curElement->addToTable();
 
             if (!strncmp(curElement->getTag().toStdString().c_str(), "(0002,0010)", 11)) {
                 if (!strncmp(curElement->getValue().toStdString().c_str(), "1.2.840.10008.1.2.1.99", 21)){
@@ -202,12 +212,26 @@ void DCMHeader::import(){
 
     while(!finished){ // Read the DICOM Header...
         curElement->clear();
-        count++;
+        count++;        
         if (readTag(byteOrder)){
-            if (!strncmp(curElement->getTag().toStdString().c_str(), "(7FE0,0010)", 11)){
+            if (!strncmp(curElement->getTag().toStdString().c_str(), "(7FE0,0010)", 11)){ // Pixel Data
                 curElement->updateFromDictionary();
                 readVL(byteOrder, implicit);
                 curElement->printToDebug();
+                curElement->addToTable();
+
+                DCMImage* image = new DCMImage();
+                image->setDimensions(512, 512);
+
+                for (int y = 0; y< 512; y++){
+                    for (int x = 0; x< 512; x++){
+                        image->setPixel(x, y, readInt2(byteOrder));
+                    }
+                }
+
+                image->update();
+                image->save("test.png");
+                image->show();
 
                 finished = true;
             } else {
@@ -216,6 +240,7 @@ void DCMHeader::import(){
                 readVL(byteOrder, implicit);
                 readValue(byteOrder, implicit);
                 curElement->printToDebug();
+                curElement->addToTable();
                 elements.push_back(curElement);
             }
         } else {

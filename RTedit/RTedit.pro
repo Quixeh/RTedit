@@ -17,12 +17,14 @@ SOURCES += main.cpp\
     DCMFile.cpp \
     DCMHeader.cpp \
     DCMElement.cpp \
-    DCMImage.cpp
+    DCMImage.cpp \
+    SlotTransfer.cpp
 
 HEADERS  += mainwindow.h \
     DCMFile.h \
     DCMHeader.h \
     DCMElement.h \
-    DCMImage.h
+    DCMImage.h \
+    SlotTransfer.h
 
 FORMS    += mainwindow.ui

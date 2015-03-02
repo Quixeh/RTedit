@@ -1,9 +1,11 @@
 #ifndef DCMELEMENT_H
 #define DCMELEMENT_H
 
+#include <QObject>
 #include <qstring.h>
 
-class DCMElement {
+class DCMElement : QObject{
+    Q_OBJECT
     public:
         DCMElement();
         ~DCMElement();
@@ -21,6 +23,7 @@ class DCMElement {
         bool updateFromDictionary();
         void clear();
         void printToDebug();
+        void addToTable();
 
     private:
         QString tag;
@@ -28,6 +31,9 @@ class DCMElement {
         int vl;
         QString value;
         QString description;
+
+    signals:
+        void addToTableSig(QString, QString, int, QString, QString);
 };
 
 #endif // DCMELEMENT_H

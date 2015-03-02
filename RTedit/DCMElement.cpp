@@ -3,9 +3,15 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <QApplication>
+
+#include <SlotTransfer.h>
+
+extern SlotTransfer s;
 
 DCMElement::DCMElement(){
     clear();
+    QObject::connect(this, SIGNAL(addToTableSig(QString, QString, int, QString, QString)), &s,  SLOT(addElementToTableSlot(QString, QString, int, QString, QString)));
 }
 
 DCMElement::~DCMElement(){
@@ -85,4 +91,8 @@ bool DCMElement::updateFromDictionary(){
 
 void DCMElement::printToDebug(){
     qDebug() << tag << " " << vr << " " << vl << " " << description << " " << value;
+}
+
+void DCMElement::addToTable(){
+   emit addToTableSig(tag, vr, vl, description, value);
 }
