@@ -14,12 +14,17 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void resizeEvent(QResizeEvent* event);
+    void updateViews();
 
 
 private slots:
     void on_actionOpen_triggered();    
-
     void on_actionExit_triggered();
+
+    void on_Tabs_currentChanged(int index);
+
+    void on_actionOpen_Folder_triggered();
 
 public slots:
     void addTableValue(QString, QString, int, QString, QString);

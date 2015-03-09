@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\DCMFile.o
+./release\DCMHeader.o
+./release\DCMElement.o
+./release\DCMImage.o
+./release\SlotTransfer.o
+./release\DCMScan.o
+./release\moc_mainwindow.o
+./release\moc_DCMElement.o
+./release\moc_SlotTransfer.o
+);

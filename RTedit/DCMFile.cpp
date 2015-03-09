@@ -24,6 +24,7 @@ bool DCMFile::openFile(QString fName){
 void DCMFile::closeFile(){
     if(filename != ""){
         fclose (fid);
+        filename = "";
     } else {
         qDebug() << "File close requested, but no file was open.";
     }

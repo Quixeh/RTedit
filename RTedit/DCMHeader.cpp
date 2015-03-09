@@ -10,12 +10,6 @@ DCMHeader::DCMHeader(){
     curElement = new DCMElement();
     byteOrder = 0;
     implicit = false;
-
-    for (int x = 0; x< 512; x++){
-        for (int y = 0; y< 512; y++){
-            pixelData[x][y] = 0;
-        }
-    }
 }
 
 DCMHeader::~DCMHeader(){
@@ -183,7 +177,7 @@ void DCMHeader::import(){
             readVL(); // Use Exlpicit VL
             readValue();
 
-            curElement->printToDebug();
+            //curElement->printToDebug();
             curElement->addToTable();
 
             if (!strncmp(curElement->getTag().toStdString().c_str(), "(0002,0010)", 11)) {
@@ -217,7 +211,7 @@ void DCMHeader::import(){
             if (!strncmp(curElement->getTag().toStdString().c_str(), "(7FE0,0010)", 11)){ // Pixel Data
                 curElement->updateFromDictionary();
                 readVL(byteOrder, implicit);
-                curElement->printToDebug();
+                //curElement->printToDebug();
                 curElement->addToTable();
 
                 DCMImage* image = new DCMImage();
@@ -239,7 +233,7 @@ void DCMHeader::import(){
                 if (!implicit) readVR();
                 readVL(byteOrder, implicit);
                 readValue(byteOrder, implicit);
-                curElement->printToDebug();
+                //curElement->printToDebug();
                 curElement->addToTable();
                 elements.push_back(curElement);
             }
@@ -249,4 +243,5 @@ void DCMHeader::import(){
     }
 
     qDebug() << "Reached end of DICOM File.";
+    closeFile();
 }

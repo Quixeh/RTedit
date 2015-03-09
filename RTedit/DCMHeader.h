@@ -24,7 +24,6 @@ class DCMHeader : public DCMFile {
         int byteOrder;
         bool implicit;
 
-        int pixelData[512][512];
     protected:
 
 };
