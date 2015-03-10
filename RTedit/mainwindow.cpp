@@ -15,7 +15,9 @@
 #include <qdebug.h>
 
 DCMScan* scan;
-QImage* displayed;
+QImage* displayedTra;
+QImage* displayedSag;
+QImage* displayedCor;
 SlotTransfer s;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -23,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow){
     ui->setupUi(this);
 
-    //s = new SlotTransfer();
     scan = new DCMScan;
 
     QGraphicsScene* scene = new QGraphicsScene();
@@ -34,9 +35,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->viewBr->setScene(scene);
     ui->viewAxial->setScene(scene);
 
+    sceneTl = new QGraphicsScene();
+    sceneBl = new QGraphicsScene();
+    sceneTr = new QGraphicsScene();
+    sceneBr = new QGraphicsScene();
+
+    QPixmap blank(1,1);
+    blank.fill(Qt::black);
+    itemBl.setPixmap(blank);
+    sceneBr->addItem(&itemBl);
+
+    ui->viewBl->setScene(sceneBr);
+    ui->viewAxial->setScene(sceneBr);
+
     setupTable();
 
     connect(&s, SIGNAL(elementsSig(QString, QString, int, QString, QString)), this,  SLOT(addTableValue(QString, QString, int, QString, QString)));
+    connect(&s, SIGNAL(clearSig()), this,  SLOT(clearSlot()));
+    connect(&s, SIGNAL(updateTransverseViewsSig()), this,  SLOT(updateTransverseViewsSlot()));
 }
 
 MainWindow::~MainWindow(){
@@ -47,31 +63,32 @@ void MainWindow::on_actionOpen_triggered(){
     QString fileName = QFileDialog::getOpenFileName(0, "Open DICOM File...", QDir::currentPath(), "DICOM Files (*.dcm);;All files (*.*)", new QString("DICOM Files (*.dcm)"));
     scan->openSingle(fileName);
     scan->importAll();
-
-    QGraphicsScene* scene = new QGraphicsScene();
-    ui->viewBl->setScene(scene);
-    ui->viewAxial->setScene(scene);
-    QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(*displayed));
-    scene->addItem(item);
-    ui->viewBl->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-    ui->viewAxial->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-
+    updateTransverseViews();
 }
 
 void MainWindow::on_actionOpen_Folder_triggered(){
     QString folderName = QFileDialog::getExistingDirectory(0, "Select DICOM Folder...", QDir::currentPath(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     scan->openFolder(folderName);
     scan->importAll();
-
-    /*QGraphicsScene* scene = new QGraphicsScene();
-    ui->viewBl->setScene(scene);
-    ui->viewAxial->setScene(scene);
-    //QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(*displayed));
-    //scene->addItem(item);
-    ui->viewBl->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-    ui->viewAxial->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);*/
+    updateTransverseViews();
 }
 
+void MainWindow::updateTransverseViews(){
+    if (scan->hasImages()){
+       // delete sceneBl;
+       // sceneBl = new QGraphicsScene();
+        //ui->viewBl->setScene(sceneBr);
+       // ui->viewAxial->setScene(sceneBr);
+        itemBl.setPixmap(QPixmap::fromImage(*displayedTra));
+       // sceneBr->addItem(&itemBl);
+        ui->viewBl->fitInView(sceneBr->sceneRect(), Qt::KeepAspectRatio);
+        ui->viewAxial->fitInView(sceneBr->sceneRect(), Qt::KeepAspectRatio);
+    }
+}
+
+void MainWindow::updateTransverseViewsSlot(){
+    updateTransverseViews();
+}
 
 void MainWindow::setupTable(){
     ui->tableWidget->setRowCount(0);
@@ -112,3 +129,6 @@ void MainWindow::on_Tabs_currentChanged(int){
     updateViews();
 }
 
+void MainWindow::clearSlot(){
+    ui->tableWidget->setRowCount(0);
+}

@@ -2,8 +2,10 @@
 #define DCMFILE_H
 
 #include <qstring.h>
+#include <qobject.h>
 
-class DCMFile {
+class DCMFile : public QObject{
+    Q_OBJECT
     public:
         DCMFile();
         ~DCMFile();

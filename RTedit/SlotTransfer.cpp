@@ -12,3 +12,10 @@ void SlotTransfer::addElementToTableSlot(QString tag, QString vr, int vl, QStrin
     emit elementsSig(tag, vr, vl, description, value);
 }
 
+void SlotTransfer::clearTableSlot(){
+    emit clearSig();
+}
+
+void SlotTransfer::updateTransverseViewsSlot(){
+    emit updateTransverseViewsSig();
+}

@@ -15,9 +15,13 @@ class SlotTransfer : public QObject {
 
     signals:
         void elementsSig(QString, QString, int, QString, QString);
+        void clearSig();
+        void updateTransverseViewsSig();
 
     public slots:
         void addElementToTableSlot(QString, QString, int, QString, QString);
+        void clearTableSlot();
+        void updateTransverseViewsSlot();
 };
 
 #endif // SLOTTRANSFER_H

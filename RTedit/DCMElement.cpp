@@ -86,6 +86,7 @@ bool DCMElement::updateFromDictionary(){
             return true;
         }
     }
+    fileInput.close();
     return false;
 }
 
@@ -95,4 +96,5 @@ void DCMElement::printToDebug(){
 
 void DCMElement::addToTable(){
    emit addToTableSig(tag, vr, vl, description, value);
+   //qDebug() << "Tabled: " << tag << " " << vr << " " << vl << " " << description << " " << value;
 }

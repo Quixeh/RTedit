@@ -11,9 +11,19 @@ class DCMScan {
         void importAll();
         void openSingle(QString);
         void openFolder(QString);
+        bool hasImages();
+
+        void nextSlice();
+        void previousSlice();
+        void clearAll();
 
     private:
-        std::vector<DCMHeader*> items;
+        std::vector<DCMHeader*> images;
+        std::vector<DCMHeader*> structures;
+        std::vector<DCMHeader*> plans;
+        std::vector<DCMHeader*> doses;
+        int currentSlice;
+        int maxSlices;
 };
 
 #endif // DCMSCAN_H

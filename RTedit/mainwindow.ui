@@ -85,7 +85,7 @@
       <item>
        <widget class="QTabWidget" name="Tabs">
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="Header">
          <attribute name="title">
@@ -210,7 +210,7 @@
            <number>1</number>
           </property>
           <item row="0" column="0">
-           <widget class="QGraphicsView" name="viewTl">
+           <widget class="GraphicsSlice" name="viewTl">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -219,6 +219,12 @@
             </property>
             <property name="autoFillBackground">
              <bool>true</bool>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="backgroundBrush">
              <brush brushstyle="SolidPattern">
@@ -245,9 +251,15 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QGraphicsView" name="viewBl">
+           <widget class="GraphicsSlice" name="viewBl">
             <property name="autoFillBackground">
              <bool>true</bool>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="backgroundBrush">
              <brush brushstyle="SolidPattern">
@@ -261,9 +273,15 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QGraphicsView" name="viewBr">
+           <widget class="GraphicsSlice" name="viewBr">
             <property name="autoFillBackground">
              <bool>true</bool>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="backgroundBrush">
              <brush brushstyle="SolidPattern">
@@ -299,9 +317,15 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QGraphicsView" name="viewAxial">
+           <widget class="GraphicsSlice" name="viewAxial">
             <property name="autoFillBackground">
              <bool>true</bool>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="backgroundBrush">
              <brush brushstyle="SolidPattern">
@@ -328,7 +352,7 @@
      <x>0</x>
      <y>0</y>
      <width>602</width>
-     <height>21</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -365,6 +389,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GraphicsSlice</class>
+   <extends>QGraphicsView</extends>
+   <header>GraphicsSlice.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

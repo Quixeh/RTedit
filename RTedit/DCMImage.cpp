@@ -1,7 +1,7 @@
 #include "DCMImage.h"
 #include <QImage>
 
-extern QImage* displayed;
+extern QImage* displayedTra;
 
 DCMImage::DCMImage(){
     height = 0;
@@ -23,6 +23,7 @@ void DCMImage::setDimensions(int xNew, int yNew){
                 row.push_back(0);
             }
             pixelData.push_back(row);
+            row.clear();
     }
 
     image = new QImage(xNew, yNew, QImage::Format_Indexed8);
@@ -68,5 +69,5 @@ void DCMImage::save(QString filename){
 }
 
 void DCMImage::show(){
-    displayed = image;
+    displayedTra = image;
 }

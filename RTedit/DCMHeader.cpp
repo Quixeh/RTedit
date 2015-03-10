@@ -5,11 +5,18 @@
 #include <qimage.h>
 #include <qrgb.h>
 #include <DCMImage.h>
+#include <SlotTransfer.h>
+#include <QObject>
+
+extern SlotTransfer s;
 
 DCMHeader::DCMHeader(){
     curElement = new DCMElement();
     byteOrder = 0;
     implicit = false;
+
+    QObject::connect(this, SIGNAL(clearTableSig()), &s,  SLOT(clearTableSlot()));
+    QObject::connect(this, SIGNAL(updateTransverseViewsSig()), &s,  SLOT(updateTransverseViewsSlot()));
 }
 
 DCMHeader::~DCMHeader(){
@@ -128,6 +135,9 @@ bool DCMHeader::readValue(int byteOrder, bool){
 
         curElement->setValue(readStr(curElement->getVL()));
         return true;
+    } else if((!strncmp(curElement->getVR().toStdString().c_str(), "SQ", 2))){
+        curElement->setValue("Sequenced Data...");
+        return false;
     } else {
         qDebug() << "I'm not sure how to read " << curElement->getVR();
         fseek(fid, curElement->getVL(), SEEK_CUR);
@@ -140,7 +150,7 @@ void DCMHeader::import(){
     // OLD File might not! - Could skip straight to the data elements. We can check by looking for a tag in the first 4 bytes.
 
     readTagReturn();
-    qDebug() << curElement->getTag() << endl;
+    //qDebug() << curElement->getTag() << endl;
 
     // Check to see if tag is in dictionary (implement this...)
 
@@ -159,7 +169,7 @@ void DCMHeader::import(){
             // Next 4 bytes should be "DICM
             qDebug() << "Error: DICM Identifier not present..." << endl;
     } else {
-            qDebug() << "File identified as DICOM\n" << endl;
+            //qDebug() << "File identified as DICOM\n" << endl;
     }
 
     bool finished = false;
@@ -177,8 +187,7 @@ void DCMHeader::import(){
             readVL(); // Use Exlpicit VL
             readValue();
 
-            //curElement->printToDebug();
-            curElement->addToTable();
+            curElement->printToDebug();
 
             if (!strncmp(curElement->getTag().toStdString().c_str(), "(0002,0010)", 11)) {
                 if (!strncmp(curElement->getValue().toStdString().c_str(), "1.2.840.10008.1.2.1.99", 21)){
@@ -195,6 +204,7 @@ void DCMHeader::import(){
             }
 
             elements.push_back(curElement);
+            curElement = new DCMElement();
         } else {
             finished = true;
             fseek(fid, -4, SEEK_CUR);   // Seek back to the start of the tag.
@@ -211,10 +221,10 @@ void DCMHeader::import(){
             if (!strncmp(curElement->getTag().toStdString().c_str(), "(7FE0,0010)", 11)){ // Pixel Data
                 curElement->updateFromDictionary();
                 readVL(byteOrder, implicit);
-                //curElement->printToDebug();
-                curElement->addToTable();
+                curElement->printToDebug();
 
-                DCMImage* image = new DCMImage();
+                image = new DCMImage();
+
                 image->setDimensions(512, 512);
 
                 for (int y = 0; y< 512; y++){
@@ -224,24 +234,123 @@ void DCMHeader::import(){
                 }
 
                 image->update();
-                image->save("test.png");
                 image->show();
-
                 finished = true;
             } else {
                 curElement->updateFromDictionary();
                 if (!implicit) readVR();
                 readVL(byteOrder, implicit);
                 readValue(byteOrder, implicit);
-                //curElement->printToDebug();
-                curElement->addToTable();
+                curElement->printToDebug();
+
+                if (!strncmp(curElement->getTag().toStdString().c_str(), "(0008,0060)", 11)){
+                    type = curElement->getValue();
+
+                    if ((type != "RTSTRUCT") && (type != "CT")){
+                        qDebug() << "Unknown Modality: " << type;
+                        type = "";
+                    }
+                }
+
                 elements.push_back(curElement);
+
+                if ((curElement->getVR() == "SQ") && (curElement->getVL() > 0)){
+                    readSequence(curElement->getVL());
+                }
+
+                curElement = new DCMElement();
             }
         } else {
             finished = true;
         }
     }
 
-    qDebug() << "Reached end of DICOM File.";
+    //qDebug() << "Reached end of DICOM File.";
     closeFile();
+}
+
+void DCMHeader::readSequence(int sequenceBytes){
+    int curSeqBytes = 0;
+
+    while(curSeqBytes < sequenceBytes){
+
+        // The first thing should be an item tag....
+
+        curElement = new DCMElement();
+        readTag();
+        if (!strncmp(curElement->getTag().toStdString().c_str(), "(FFFE,E000)", 11)){
+            readVL(byteOrder, true);
+            curElement->setValue("Item Start");
+        } else {
+            qDebug() << "Error Here! No item tag when it was expected.";
+        }
+
+        curElement->printToDebug();
+        elements.push_back(curElement);
+
+        // Now read it's value...
+
+        int itemBytes = curElement->getVL();
+        int curItmBytes = 0;
+
+        while(curItmBytes < itemBytes){
+
+            curElement = new DCMElement();
+            readTag();
+            curItmBytes += 4;
+            curElement->updateFromDictionary();
+
+            readVL(byteOrder, implicit);
+
+            if (implicit){
+                curItmBytes += 4;
+            } else {
+                if ((!strncmp(curElement->getVR().toStdString().c_str(), "OB", 2)) || (!strncmp(curElement->getVR().toStdString().c_str(), "OW", 2)) || (!strncmp(curElement->getVR().toStdString().c_str(), "OF", 2)) |
+                        (!strncmp(curElement->getVR().toStdString().c_str(), "SQ", 2)) || (!strncmp(curElement->getVR().toStdString().c_str(), "UT", 2)) || (!strncmp(curElement->getVR().toStdString().c_str(), "UN", 2)) ){
+                    curItmBytes += 4;
+                } else {
+                    curItmBytes += 2;
+                }
+            }
+
+            if (curElement->getVL() > 0){
+                readValue(byteOrder, implicit);
+                curItmBytes += curElement->getVL();
+            } else {
+                curElement->setValue("null");
+            }
+
+            curElement->printToDebug();
+            elements.push_back(curElement);
+
+            if ((curElement->getVR() == "SQ") && (curElement->getVL() > 0)){
+                readSequence(curElement->getVL());
+            }
+
+            qDebug() << "End Squence..." << curItmBytes << " / " << itemBytes;
+
+            if (curItmBytes > itemBytes){
+                qDebug() << "Error Here!";
+            }
+        }
+
+        curSeqBytes += itemBytes +8;
+    }
+}
+
+void DCMHeader::putInTable(){
+    emit clearTableSig();
+    //qDebug() << "Requested Table.";
+    for (auto item : elements){
+        item->addToTable();
+    }
+}
+
+QString DCMHeader::getType(){
+    return type;
+}
+
+void DCMHeader::display(){
+    image->show();
+    emit updateTransverseViewsSig();
 }

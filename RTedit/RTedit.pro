@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     DCMElement.cpp \
     DCMImage.cpp \
     SlotTransfer.cpp \
-    DCMScan.cpp
+    DCMScan.cpp \
+    GraphicsSlice.cpp
 
 HEADERS  += mainwindow.h \
     DCMFile.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     DCMElement.h \
     DCMImage.h \
     SlotTransfer.h \
-    DCMScan.h
+    DCMScan.h \
+    GraphicsSlice.h
 
 CONFIG += c++11
 

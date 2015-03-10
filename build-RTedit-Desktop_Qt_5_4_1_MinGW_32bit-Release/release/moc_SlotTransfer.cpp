@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_SlotTransfer_t {
-    QByteArrayData data[4];
-    char stringdata[48];
+    QByteArrayData data[8];
+    char stringdata[123];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,16 @@ static const qt_meta_stringdata_SlotTransfer_t qt_meta_stringdata_SlotTransfer =
 QT_MOC_LITERAL(0, 0, 12), // "SlotTransfer"
 QT_MOC_LITERAL(1, 13, 11), // "elementsSig"
 QT_MOC_LITERAL(2, 25, 0), // ""
-QT_MOC_LITERAL(3, 26, 21) // "addElementToTableSlot"
+QT_MOC_LITERAL(3, 26, 8), // "clearSig"
+QT_MOC_LITERAL(4, 35, 24), // "updateTransverseViewsSig"
+QT_MOC_LITERAL(5, 60, 21), // "addElementToTableSlot"
+QT_MOC_LITERAL(6, 82, 14), // "clearTableSlot"
+QT_MOC_LITERAL(7, 97, 25) // "updateTransverseViewsSlot"
 
     },
-    "SlotTransfer\0elementsSig\0\0"
-    "addElementToTableSlot"
+    "SlotTransfer\0elementsSig\0\0clearSig\0"
+    "updateTransverseViewsSig\0addElementToTableSlot\0"
+    "clearTableSlot\0updateTransverseViewsSlot"
 };
 #undef QT_MOC_LITERAL
 
@@ -46,24 +51,32 @@ static const uint qt_meta_data_SlotTransfer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    5,   24,    2, 0x06 /* Public */,
+       1,    5,   44,    2, 0x06 /* Public */,
+       3,    0,   55,    2, 0x06 /* Public */,
+       4,    0,   56,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    5,   35,    2, 0x0a /* Public */,
+       5,    5,   57,    2, 0x0a /* Public */,
+       6,    0,   68,    2, 0x0a /* Public */,
+       7,    0,   69,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,    2,
+    QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,    2,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -74,7 +87,11 @@ void SlotTransfer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         SlotTransfer *_t = static_cast<SlotTransfer *>(_o);
         switch (_id) {
         case 0: _t->elementsSig((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
-        case 1: _t->addElementToTableSlot((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
+        case 1: _t->clearSig(); break;
+        case 2: _t->updateTransverseViewsSig(); break;
+        case 3: _t->addElementToTableSlot((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
+        case 4: _t->clearTableSlot(); break;
+        case 5: _t->updateTransverseViewsSlot(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -84,6 +101,18 @@ void SlotTransfer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             typedef void (SlotTransfer::*_t)(QString , QString , int , QString , QString );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&SlotTransfer::elementsSig)) {
                 *result = 0;
+            }
+        }
+        {
+            typedef void (SlotTransfer::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&SlotTransfer::clearSig)) {
+                *result = 1;
+            }
+        }
+        {
+            typedef void (SlotTransfer::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&SlotTransfer::updateTransverseViewsSig)) {
+                *result = 2;
             }
         }
     }
@@ -114,13 +143,13 @@ int SlotTransfer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 6;
     }
     return _id;
 }
@@ -130,5 +159,17 @@ void SlotTransfer::elementsSig(QString _t1, QString _t2, int _t3, QString _t4, Q
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void SlotTransfer::clearSig()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, Q_NULLPTR);
+}
+
+// SIGNAL 2
+void SlotTransfer::updateTransverseViewsSig()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

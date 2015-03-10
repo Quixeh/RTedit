@@ -6,7 +6,12 @@ INPUT(
 ./debug\DCMElement.o
 ./debug\DCMImage.o
 ./debug\SlotTransfer.o
+./debug\DCMScan.o
+./debug\GraphicsSlice.o
 ./debug\moc_mainwindow.o
+./debug\moc_DCMFile.o
+./debug\moc_DCMHeader.o
 ./debug\moc_DCMElement.o
 ./debug\moc_SlotTransfer.o
+./debug\moc_GraphicsSlice.o
 );

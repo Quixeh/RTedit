@@ -16,7 +16,7 @@ bool DCMFile::openFile(QString fName){
         filename = "";
         return false;
     } else {
-        qDebug() << "File " << filename << "opened successfully.";
+        //qDebug() << "File " << filename << "opened successfully.";
         return true;
     }
 }

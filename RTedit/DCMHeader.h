@@ -3,13 +3,20 @@
 
 #include "DCMFile.h"
 #include "DCMElement.h"
+#include "DCMImage.h"
 #include "vector"
+#include <QObject>
 
-class DCMHeader : public DCMFile {
+class DCMHeader : public DCMFile{
+    Q_OBJECT
     public:
         DCMHeader();
         ~DCMHeader();
         void import();
+        void putInTable();
+        QString getType();
+        void display();
+
 
     private:
         std::vector<DCMElement*> elements;
@@ -20,11 +27,20 @@ class DCMHeader : public DCMFile {
         bool readVR();
         bool readVL(int = 0, bool = false);
         bool readValue(int = 0, bool = false);
+        void readSequence(int);
 
         int byteOrder;
         bool implicit;
 
+        QString type;
+        DCMImage* image;
+
     protected:
+
+
+    signals:
+        void clearTableSig();
+        void updateTransverseViewsSig();
 
 };
 
