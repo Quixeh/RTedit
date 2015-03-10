@@ -80,21 +80,17 @@ bool DCMScan::hasImages(){
 }
 
 void DCMScan::nextSlice(){
-    qDebug() << "Next Slice...";
-    if (currentSlice < maxSlices){
+   if (currentSlice < maxSlices){
         currentSlice++;
         images[currentSlice-1]->display();
         images[currentSlice-1]->putInTable();
     }
-    qDebug() << currentSlice;
 }
 
 void DCMScan::previousSlice(){
-    qDebug() << "Prev Slice...";
     if (currentSlice > 1){
         currentSlice--;
         images[currentSlice-1]->display();
         images[currentSlice-1]->putInTable();
     }
-    qDebug() << currentSlice;
 }

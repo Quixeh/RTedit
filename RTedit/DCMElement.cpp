@@ -91,7 +91,7 @@ bool DCMElement::updateFromDictionary(){
 }
 
 void DCMElement::printToDebug(){
-    qDebug() << tag << " " << vr << " " << vl << " " << description << " " << value;
+    //qDebug() << tag << " " << vr << " " << vl << " " << description << " " << value;
 }
 
 void DCMElement::addToTable(){
