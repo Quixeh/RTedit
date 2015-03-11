@@ -21,6 +21,7 @@ class DCMHeader : public DCMFile{
         int getWidth();
         int getHeight();
         int getPixelValue(int, int);
+        float getPixelSpacing();
 
     private:
         std::vector<DCMElement*> elements;
@@ -36,6 +37,7 @@ class DCMHeader : public DCMFile{
         int byteOrder;
         bool implicit;
         int slicePosition;
+        float pixelSpacing;
 
         QString type;
         DCMImage* image;

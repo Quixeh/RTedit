@@ -7,6 +7,7 @@
 #include <DCMImage.h>
 #include <SlotTransfer.h>
 #include <QObject>
+#include <math.h>
 
 extern SlotTransfer s;
 
@@ -15,6 +16,7 @@ DCMHeader::DCMHeader(){
     byteOrder = 0;
     implicit = false;
     slicePosition = 0;
+    pixelSpacing = 0;
 
     QObject::connect(this, SIGNAL(clearTableSig()), &s,  SLOT(clearTableSlot()));
     QObject::connect(this, SIGNAL(updateTransverseViewsSig()), &s,  SLOT(updateTransverseViewsSlot()));
@@ -253,6 +255,9 @@ void DCMHeader::import(){
                     }
                 } else if(!strncmp(curElement->getTag().toStdString().c_str(), "(0020,1041)", 11)) {
                     slicePosition = curElement->getValue().toInt();
+
+                } else if(!strncmp(curElement->getTag().toStdString().c_str(), "(0028,0030)", 11)) {
+                    pixelSpacing = roundf(curElement->getValue().split(" ")[0].toDouble() * 100) / 100;
                 }
 
                 elements.push_back(curElement);
@@ -384,4 +389,8 @@ int DCMHeader::getPixelValue(int x, int y){
     } else {
         return 0;
     }
+}
+
+float DCMHeader::getPixelSpacing(){
+    return pixelSpacing;
 }

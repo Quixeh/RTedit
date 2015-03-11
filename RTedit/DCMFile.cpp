@@ -3,6 +3,8 @@
 #include "string"
 #include <sstream>
 
+extern rtrim(const QString&);
+
 DCMFile::DCMFile(){
     filename = "";
 }
@@ -122,11 +124,13 @@ QString DCMFile::readStr(int vL){
 
                 foreach(QByteArray byteArr, list) {
                     //if (!(o->pCheckVLCharacterRepertoire)( o, byteArr)) ERR_MSG_RTN_FLS;
-                    ss << std::string(byteArr);
+                    ss << std::string(byteArr) << " ";
                 }
+
+
     }
 
     QString value = QString::fromStdString(ss.str());
-
+    value = rtrim(value);
     return value;
 }

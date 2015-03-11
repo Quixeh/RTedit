@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <DCMHeader.h>
 #include <QImage>
+#include <QProgressDialog>
+#include <QApplication>
 
 extern compareSlices(DCMHeader*, DCMHeader*);
 extern QImage* displayedSag;
@@ -12,6 +14,8 @@ extern QImage* displayedCor;
 DCMScan::DCMScan(){
     currentSlice = 0;
     maxSlices = 0;
+    sliceWidth = 0;
+    pixelSpacing = 0;
     corImage = new QImage();
     sagImage = new QImage();
 }
@@ -55,6 +59,14 @@ void DCMScan::openFolder(QString folderName){
     maxSlices = 0;
     QDir directory(folderName);
     QDirIterator it(directory);
+
+    int fileNo = 0;
+
+    QProgressDialog* progressDialog = new QProgressDialog("Loading DICOM Data...", "Abort", 0, directory.count());
+    //progressDialog->setWindowIcon(QIcon(":/images/icons/silk/user_green.png"));
+    progressDialog->show();
+    progressDialog->setWindowModality(Qt::WindowModal);
+
     while (it.hasNext()) {
         QString fileName = it.next();
         if (fileName.right(4) == ".dcm"){
@@ -75,6 +87,12 @@ void DCMScan::openFolder(QString folderName){
                 plans.push_back(header);
             }
         }
+        fileNo++;
+        progressDialog->setValue(fileNo);
+        QApplication::processEvents();
+        if (progressDialog->wasCanceled()){
+            return;
+        }
     }
 
     if(hasImages()){
@@ -84,6 +102,10 @@ void DCMScan::openFolder(QString folderName){
         currentSlice = (maxSlices/float(2.0));
         getSlice(currentSlice)->display();
    }
+
+    setupOrthogonal();
+    createCoronal(256);
+    createSaggital(256);
 }
 
 void DCMScan::buildIndex(){
@@ -114,18 +136,18 @@ bool DCMScan::hasImages(){
     return false;
 }
 
-void DCMScan::nextSlice(int){
+void DCMScan::nextSlice(int axis){
     switch (axis) {
         case 2: // Coronal
             if (currentCorSlice < maxCorSlices){
                  currentCorSlice++;
-                 createCoronal(int currentCorSlice);
+                 createCoronal(currentCorSlice);
             }
             break;
         case 1: // Sagital
             if (currentSagSlice < maxSagSlices){
                  currentSagSlice++;
-                 createSaggital(int currentSagSlice);
+                 createSaggital(currentSagSlice);
             }
             break;
         case 0:
@@ -139,7 +161,7 @@ void DCMScan::nextSlice(int){
     }
 }
 
-void DCMScan::previousSlice(int){
+void DCMScan::previousSlice(int axis){
     if (currentSlice > 1){
         currentSlice--;
         getSlice(currentSlice)->display();
@@ -150,13 +172,13 @@ void DCMScan::previousSlice(int){
         case 2: // Coronal
             if (currentCorSlice > 1){
                  currentCorSlice--;
-                 createCoronal(int currentCorSlice);
+                 createCoronal(currentCorSlice);
             }
             break;
         case 1: // Sagital
             if (currentSagSlice > 1){
                  currentSagSlice--;
-                 createSaggital(int currentSagSlice);
+                 createSaggital(currentSagSlice);
             }
             break;
         case 0:
@@ -174,7 +196,44 @@ DCMHeader* DCMScan::getSlice(int pos){
     return images[slices[pos-1]];
 }
 
+
+void DCMScan::createSaggital(int pos){
+    qDebug() << "Creating Saggital " << pos;
+    if(hasImages()){
+        int width = floor(maxSlices*sliceWidth/pixelSpacing);
+        int height = images[0]->getHeight();
+
+        delete sagImage;
+        sagImage = new QImage(width, height, QImage::Format_Indexed8);
+
+        QVector<QRgb> greyscaleTable;
+        for(int i = 0; i < 256; i++) greyscaleTable.push_back(qRgb(i,i,i));
+        sagImage->setColorTable(greyscaleTable);
+
+        if ((pos >= 0) && (pos < images[0]->getWidth())){
+            for (int i = 0; i<width; i++){
+                for (int j = 0; j<height; j++){
+                    int lower = floor(i/sliceWidth);
+                    int upper = ceil(i/sliceWidth);
+                    float remainder = (i/sliceWidth) - lower;
+
+                    int value = (((1-remainder)*images[lower]->getPixelValue(pos, j)) + (remainder * images[upper]->getPixelValue(pos, j)));
+
+
+                    sagImage->setPixel(i, j, value);
+                }
+            }
+        }
+        sagImage->save("Test3.png");
+        displayedSag = sagImage;
+        emit updateSaggitalView();
+        qDebug() << "Created Saggital";
+    }
+}
+
 void DCMScan::createCoronal(int pos){
+
+    qDebug() << "Creating Coronal " << pos;
     if(hasImages()){
         int width = images[0]->getWidth();
         int height = maxSlices;
@@ -194,9 +253,17 @@ void DCMScan::createCoronal(int pos){
                 }
             }
         }
-
+        corImage->save("Test2.png");
         displayedCor = corImage;
         emit updateCoronalView();
+        qDebug() << "Created Coronal";
     }
 }
 
+void DCMScan::setupOrthogonal(){
+    int maxCorSlices = images[0]->getHeight();
+    int maxSagSlices = images[0]->getWidth();
+
+    sliceWidth = abs(getSlice(1)->getSlicePos() - getSlice(2)->getSlicePos());
+    pixelSpacing = images[0]->getPixelSpacing();
+}

@@ -29,15 +29,24 @@ class DCMScan : public QObject {
         std::vector<DCMHeader*> doses;
         int currentSlice;
         int maxSlices;
+        int currentCorSlice;
+        int maxCorSlices;
+        int currentSagSlice;
+        int maxSagSlices;
+        float sliceWidth;
+        float pixelSpacing;
+
         std::vector<int> slices;
 
         void buildIndex();
+        void setupOrthogonal();
         DCMHeader* getSlice(int);
         QImage* sagImage;
         QImage* corImage;
 
     signals:
         void updateCoronalView();
+        void updateSaggitalView();
 };
 
 

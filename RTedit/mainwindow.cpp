@@ -32,6 +32,16 @@ bool compareSlices(DCMHeader* h1, DCMHeader* h2){
     }
 }
 
+QString rtrim(const QString& str) {
+  int n = str.size() - 1;
+  for (; n >= 0; --n) {
+    if (!str.at(n).isSpace()) {
+      return str.left(n + 1);
+    }
+  }
+  return "";
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -100,6 +110,7 @@ void MainWindow::updateTransverseViews(){
 
 void MainWindow::updateCoronalViews(){
     if (scan->hasImages()){
+        qDebug() << "Coronal Updated";
         itemTl.setPixmap(QPixmap::fromImage(*displayedCor));
         ui->viewTl->fitInView(sceneTl->sceneRect(), Qt::KeepAspectRatio);
     }

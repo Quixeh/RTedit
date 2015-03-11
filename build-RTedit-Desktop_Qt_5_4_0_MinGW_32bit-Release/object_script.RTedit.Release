@@ -13,5 +13,6 @@ INPUT(
 ./release\moc_DCMHeader.o
 ./release\moc_DCMElement.o
 ./release\moc_SlotTransfer.o
+./release\moc_DCMScan.o
 ./release\moc_GraphicsSlice.o
 );
