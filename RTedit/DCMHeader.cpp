@@ -14,6 +14,7 @@ DCMHeader::DCMHeader(){
     curElement = new DCMElement();
     byteOrder = 0;
     implicit = false;
+    slicePosition = 0;
 
     QObject::connect(this, SIGNAL(clearTableSig()), &s,  SLOT(clearTableSlot()));
     QObject::connect(this, SIGNAL(updateTransverseViewsSig()), &s,  SLOT(updateTransverseViewsSlot()));
@@ -250,6 +251,8 @@ void DCMHeader::import(){
                         qDebug() << "Unknown Modality: " << type;
                         type = "";
                     }
+                } else if(!strncmp(curElement->getTag().toStdString().c_str(), "(0020,1041)", 11)) {
+                    slicePosition = curElement->getValue().toInt();
                 }
 
                 elements.push_back(curElement);
@@ -327,7 +330,7 @@ void DCMHeader::readSequence(int sequenceBytes){
                 readSequence(curElement->getVL());
             }
 
-            qDebug() << "End Squence..." << curItmBytes << " / " << itemBytes;
+            //qDebug() << "End Squence..." << curItmBytes << " / " << itemBytes;
 
             if (curItmBytes > itemBytes){
                 qDebug() << "Error Here!";
@@ -353,4 +356,32 @@ QString DCMHeader::getType(){
 void DCMHeader::display(){
     image->show();
     emit updateTransverseViewsSig();
+}
+
+int DCMHeader::getSlicePos() const{
+    return slicePosition;
+}
+
+int DCMHeader::getWidth(){
+    if(type == "CT"){
+        return image->getWidth();
+    } else {
+        return 0;
+    }
+}
+
+int DCMHeader::getHeight(){
+    if(type == "CT"){
+        return image->getHeight();
+    } else {
+        return 0;
+    }
+}
+
+int DCMHeader::getPixelValue(int x, int y){
+    if(type == "CT"){
+        return image->getNormPixValue(x, y);
+    } else {
+        return 0;
+    }
 }

@@ -9,6 +9,7 @@ class GraphicsSlice : public QGraphicsView {
     public:
         explicit GraphicsSlice(QObject *parent = 0);
         ~GraphicsSlice();
+        void setAxis(int);
 
     signals:
 
@@ -16,6 +17,7 @@ class GraphicsSlice : public QGraphicsView {
 
     protected:
         void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
+        int axis;
 };
 
 #endif // GRAPHICSSLICE_H

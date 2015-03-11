@@ -7,11 +7,15 @@
 extern DCMScan* scan;
 
 GraphicsSlice::GraphicsSlice(QObject*){
-
+    axis = 0; // Default to Transverse
 }
 
 GraphicsSlice::~GraphicsSlice(){
 
+}
+
+void GraphicsSlice::setAxis(int newAxis){
+    axis = newAxis;
 }
 
 void GraphicsSlice::wheelEvent(QWheelEvent *e){
@@ -20,9 +24,10 @@ void GraphicsSlice::wheelEvent(QWheelEvent *e){
     } else {
         // Slice Change goes here...
         if (e->delta() > 0){
-            scan->nextSlice();
+            scan->nextSlice(axis);
+
         } else {
-            scan->previousSlice();
+            scan->previousSlice(axis);
         }
         QGraphicsView::wheelEvent(e);
     }

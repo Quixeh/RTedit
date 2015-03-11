@@ -13,12 +13,17 @@ class DCMImage{
         void save(QString);
         void update();
         void show();
+        int getWidth();
+        int getHeight();
+        int getNormPixValue(int, int);
 
     private:
         std::vector<std::vector<int> > pixelData;
         QImage* image;
         int height;
         int width;
+        int max;
+        int min;
 };
 
 #endif // DCMIMAGE_H

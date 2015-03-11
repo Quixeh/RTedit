@@ -20,20 +20,25 @@ QImage* displayedSag;
 QImage* displayedCor;
 SlotTransfer s;
 
+bool compareSlices(DCMHeader* h1, DCMHeader* h2){
+    int a = h1->getSlicePos();
+    int b = h2->getSlicePos();
+    if(a == b){
+        return false;
+    } else if (a<b){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow){
     ui->setupUi(this);
 
     scan = new DCMScan;
-
-    QGraphicsScene* scene = new QGraphicsScene();
-    scene->addRect(1,1,1,1,QPen(QColor(Qt::black)),QBrush());
-
-    ui->viewTl->setScene(scene);
-    ui->viewBl->setScene(scene);
-    ui->viewBr->setScene(scene);
-    ui->viewAxial->setScene(scene);
 
     sceneTl = new QGraphicsScene();
     sceneBl = new QGraphicsScene();
@@ -43,16 +48,28 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap blank(1,1);
     blank.fill(Qt::black);
     itemBl.setPixmap(blank);
-    sceneBr->addItem(&itemBl);
+    itemTl.setPixmap(blank);
+    itemBr.setPixmap(blank);
 
-    ui->viewBl->setScene(sceneBr);
-    ui->viewAxial->setScene(sceneBr);
+    sceneBl->addItem(&itemBl);
+    sceneBr->addItem(&itemBr);
+    sceneTl->addItem(&itemTl);
+
+    ui->viewBl->setScene(sceneBl);
+    ui->viewBr->setScene(sceneBr);
+    ui->viewTl->setScene(sceneTl);
+    ui->viewAxial->setScene(sceneBl);
+
+    ui->viewTl->setAxis(2);
+    ui->viewBr->setAxis(1);
 
     setupTable();
 
     connect(&s, SIGNAL(elementsSig(QString, QString, int, QString, QString)), this,  SLOT(addTableValue(QString, QString, int, QString, QString)));
     connect(&s, SIGNAL(clearSig()), this,  SLOT(clearSlot()));
     connect(&s, SIGNAL(updateTransverseViewsSig()), this,  SLOT(updateTransverseViewsSlot()));
+    connect(scan, SIGNAL(updateCoronalView()), this,  SLOT(updateCoronalViewsSlot()));
+    connect(scan, SIGNAL(updateSaggitalView()), this,  SLOT(updateSaggitalViewsSlot()));
 }
 
 MainWindow::~MainWindow(){
@@ -75,20 +92,38 @@ void MainWindow::on_actionOpen_Folder_triggered(){
 
 void MainWindow::updateTransverseViews(){
     if (scan->hasImages()){
-       // delete sceneBl;
-       // sceneBl = new QGraphicsScene();
-        //ui->viewBl->setScene(sceneBr);
-       // ui->viewAxial->setScene(sceneBr);
         itemBl.setPixmap(QPixmap::fromImage(*displayedTra));
-       // sceneBr->addItem(&itemBl);
-        ui->viewBl->fitInView(sceneBr->sceneRect(), Qt::KeepAspectRatio);
-        ui->viewAxial->fitInView(sceneBr->sceneRect(), Qt::KeepAspectRatio);
+        ui->viewBl->fitInView(sceneBl->sceneRect(), Qt::KeepAspectRatio);
+        ui->viewAxial->fitInView(sceneBl->sceneRect(), Qt::KeepAspectRatio);
+    }
+}
+
+void MainWindow::updateCoronalViews(){
+    if (scan->hasImages()){
+        itemTl.setPixmap(QPixmap::fromImage(*displayedCor));
+        ui->viewTl->fitInView(sceneTl->sceneRect(), Qt::KeepAspectRatio);
+    }
+}
+
+void MainWindow::updateSaggitalViews(){
+    if (scan->hasImages()){
+        itemBr.setPixmap(QPixmap::fromImage(*displayedSag));
+        ui->viewBr->fitInView(sceneBr->sceneRect(), Qt::KeepAspectRatio);
     }
 }
 
 void MainWindow::updateTransverseViewsSlot(){
     updateTransverseViews();
 }
+
+void MainWindow::updateCoronalViewsSlot(){
+    updateCoronalViews();
+}
+
+void MainWindow::updateSaggitalViewsSlot(){
+    updateSaggitalViews();
+}
+
 
 void MainWindow::setupTable(){
     ui->tableWidget->setRowCount(0);

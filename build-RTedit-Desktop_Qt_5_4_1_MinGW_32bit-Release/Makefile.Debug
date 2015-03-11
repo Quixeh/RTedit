@@ -251,6 +251,11 @@ debug/moc_mainwindow.cpp: ../../../../Qt/5.4/mingw491_32/include/QtWidgets/QMain
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qicon.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsScene \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsscene.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsitem.h \
 		../RTedit/mainwindow.h
 	C:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -IC:/Andy/Projects/RTedit/RTedit -IC:/Qt/5.4/mingw491_32/include -IC:/Qt/5.4/mingw491_32/include/QtWidgets -IC:/Qt/5.4/mingw491_32/include/QtGui -IC:/Qt/5.4/mingw491_32/include/QtCore -I. ..\RTedit\mainwindow.h -o debug\moc_mainwindow.cpp
 
@@ -358,6 +363,41 @@ debug/moc_DCMHeader.cpp: ../RTedit/DCMFile.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qobject_impl.h \
 		../RTedit/DCMElement.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QObject \
+		../RTedit/DCMImage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/QImage \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qimage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qtransform.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qmatrix.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpolygon.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpoint.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qrect.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qmargins.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qsize.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qregion.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qwindowdefs.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qline.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpainterpath.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpaintdevice.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qrgb.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpixelformat.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdebug.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qmap.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qtextstream.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qlocale.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qvariant.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qset.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		../RTedit/DCMHeader.h
 	C:\Qt\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.4/mingw491_32/mkspecs/win32-g++ -IC:/Andy/Projects/RTedit/RTedit -IC:/Qt/5.4/mingw491_32/include -IC:/Qt/5.4/mingw491_32/include/QtWidgets -IC:/Qt/5.4/mingw491_32/include/QtGui -IC:/Qt/5.4/mingw491_32/include/QtCore -I. ..\RTedit\DCMHeader.h -o debug\moc_DCMHeader.cpp
 
@@ -820,13 +860,26 @@ debug/main.o: ../RTedit/main.cpp ../RTedit/mainwindow.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qicon.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsScene \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsscene.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QApplication \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qapplication.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qeventloop.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qinputmethod.h
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qinputmethod.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QtPlugin \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qplugin.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpointer.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qjsonobject.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qjsonvalue.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QLibrary \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qlibrary.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\RTedit\main.cpp
 
 debug/mainwindow.o: ../RTedit/mainwindow.cpp ../RTedit/mainwindow.h \
@@ -935,74 +988,12 @@ debug/mainwindow.o: ../RTedit/mainwindow.cpp ../RTedit/mainwindow.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qicon.h \
-		ui_mainwindow.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/QVariant \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QAction \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qaction.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qactiongroup.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QApplication \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qapplication.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qeventloop.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qinputmethod.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QButtonGroup \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsView \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsview.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qpainter.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qtextoption.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qpen.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qscrollarea.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qframe.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsScene \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsscene.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGroupBox \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgroupbox.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QHBoxLayout \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qstyleoption.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qvalidator.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qregularexpression.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qslider.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qabstractslider.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qstyle.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtabbar.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qrubberband.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QMenu \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qmenu.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QMenuBar \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qmenubar.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QOpenGLWidget \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qopenglwidget.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QWidget \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/QSurfaceFormat \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qsurfaceformat.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qopengl.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qt_windows.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qopengles2ext.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/qopenglext.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QTabWidget \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QTableWidget \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtablewidget.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtableview.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QTreeWidget \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtreewidget.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtreeview.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qtreewidgetitemiterator.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QVBoxLayout \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsPixmapItem \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsitem.h \
+		ui_mainwindow.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QFileDialog \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qfiledialog.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qdir.h \
@@ -1010,13 +1001,14 @@ debug/mainwindow.o: ../RTedit/mainwindow.cpp ../RTedit/mainwindow.h \
 		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qdialog.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QDir \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/QPixmap \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsPixmapItem \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsitem.h \
 		../RTedit/DCMScan.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QObject \
 		../RTedit/DCMHeader.h \
 		../RTedit/DCMFile.h \
 		../RTedit/DCMElement.h \
+		../RTedit/DCMImage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/QImage \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
 		../RTedit/SlotTransfer.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\RTedit\mainwindow.cpp
@@ -1144,41 +1136,41 @@ debug/DCMHeader.o: ../RTedit/DCMHeader.cpp ../RTedit/DCMHeader.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qobject_impl.h \
 		../RTedit/DCMElement.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QObject \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qdebug.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qhash.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qpair.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qmap.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qtextstream.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qiodevice.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qlocale.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qvariant.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringlist.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qdatastream.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qregexp.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qshareddata.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qvector.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qpoint.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qset.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
+		../RTedit/DCMImage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/QImage \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qimage.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qtransform.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qmatrix.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qpolygon.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpoint.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qrect.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qmargins.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qsize.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qregion.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qwindowdefs.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpair.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qline.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qpainterpath.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qpaintdevice.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qrgb.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qpixelformat.h \
-		../RTedit/DCMImage.h \
-		../../../../Qt/5.4/mingw491_32/include/QtGui/QImage \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdebug.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qmap.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qtextstream.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qlocale.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qvariant.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qset.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		../RTedit/SlotTransfer.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DCMHeader.o ..\RTedit\DCMHeader.cpp
@@ -1482,31 +1474,48 @@ debug/DCMScan.o: ../RTedit/DCMScan.cpp ../RTedit/DCMScan.h \
 		../RTedit/DCMHeader.h \
 		../RTedit/DCMFile.h \
 		../RTedit/DCMElement.h \
+		../RTedit/DCMImage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/QImage \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qimage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qtransform.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qmatrix.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpolygon.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpoint.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qrect.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qmargins.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qsize.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qregion.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qwindowdefs.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qline.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpainterpath.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpaintdevice.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qrgb.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/qpixelformat.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdebug.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qmap.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qtextstream.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qlocale.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qvariant.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qset.h \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QDir \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qdir.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qfileinfo.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qfile.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qfiledevice.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qiodevice.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qshareddata.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qhash.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qpair.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringlist.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qdatastream.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qregexp.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/QDirIterator \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qdiriterator.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qdebug.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qmap.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qtextstream.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qlocale.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qvariant.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qvector.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qpoint.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qset.h \
-		../../../../Qt/5.4/mingw491_32/include/QtCore/qcontiguouscache.h
+		../../../../Qt/5.4/mingw491_32/include/QtCore/qdiriterator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\DCMScan.o ..\RTedit\DCMScan.cpp
 
 debug/GraphicsSlice.o: ../RTedit/GraphicsSlice.cpp ../RTedit/GraphicsSlice.h \
@@ -1620,7 +1629,16 @@ debug/GraphicsSlice.o: ../RTedit/GraphicsSlice.cpp ../RTedit/GraphicsSlice.h \
 		../../../../Qt/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		../../../../Qt/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
-		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsscene.h
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/qgraphicsscene.h \
+		../../../../Qt/5.4/mingw491_32/include/QtWidgets/QGraphicsScene \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/QWheelEvent \
+		../RTedit/DCMScan.h \
+		../RTedit/DCMHeader.h \
+		../RTedit/DCMFile.h \
+		../RTedit/DCMElement.h \
+		../RTedit/DCMImage.h \
+		../../../../Qt/5.4/mingw491_32/include/QtGui/QImage \
+		../../../../Qt/5.4/mingw491_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\GraphicsSlice.o ..\RTedit\GraphicsSlice.cpp
 
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 

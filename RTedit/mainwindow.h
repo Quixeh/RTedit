@@ -29,11 +29,15 @@ public slots:
     void addTableValue(QString, QString, int, QString, QString);
     void clearSlot();
     void updateTransverseViewsSlot();
+    void updateCoronalViewsSlot();
+    void updateSaggitalViewsSlot();
 
 private:
     Ui::MainWindow *ui;
     void setupTable();
     void updateTransverseViews();
+    void updateCoronalViews();
+    void updateSaggitalViews();
 
     QGraphicsScene* sceneTl;
     QGraphicsScene* sceneBl;
@@ -41,6 +45,8 @@ private:
     QGraphicsScene* sceneBr;
 
     QGraphicsPixmapItem itemBl;
+    QGraphicsPixmapItem itemBr;
+    QGraphicsPixmapItem itemTl;
 
 };
 

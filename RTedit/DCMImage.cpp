@@ -42,8 +42,8 @@ int DCMImage::getPixel(int x, int y){
 }
 
 void DCMImage::update(){
-    int max = 0;
-    int min = 0;
+    max = 0;
+    min = 0;
 
     for (int y = 0; y< height; y++){
         for (int x = 0; x< width; x++){
@@ -70,4 +70,16 @@ void DCMImage::save(QString filename){
 
 void DCMImage::show(){
     displayedTra = image;
+}
+
+int DCMImage::getWidth(){
+    return width;
+}
+
+int DCMImage::getHeight(){
+    return height;
+}
+
+int DCMImage::getNormPixValue(int x, int y){
+    return (255*((pixelData[x][y] - min)/float((max-min))));
 }

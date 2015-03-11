@@ -6,6 +6,7 @@
 #include "DCMImage.h"
 #include "vector"
 #include <QObject>
+#include <QDebug>
 
 class DCMHeader : public DCMFile{
     Q_OBJECT
@@ -16,7 +17,10 @@ class DCMHeader : public DCMFile{
         void putInTable();
         QString getType();
         void display();
-
+        int getSlicePos() const;
+        int getWidth();
+        int getHeight();
+        int getPixelValue(int, int);
 
     private:
         std::vector<DCMElement*> elements;
@@ -31,6 +35,7 @@ class DCMHeader : public DCMFile{
 
         int byteOrder;
         bool implicit;
+        int slicePosition;
 
         QString type;
         DCMImage* image;
@@ -41,7 +46,6 @@ class DCMHeader : public DCMFile{
     signals:
         void clearTableSig();
         void updateTransverseViewsSig();
-
 };
 
 #endif // DCMHEADER_H

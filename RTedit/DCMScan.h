@@ -4,7 +4,8 @@
 #include <QObject>
 #include <DCMHeader.h>
 
-class DCMScan {
+class DCMScan : public QObject {
+    Q_OBJECT
     public:
         DCMScan();
         ~DCMScan();
@@ -13,9 +14,13 @@ class DCMScan {
         void openFolder(QString);
         bool hasImages();
 
-        void nextSlice();
-        void previousSlice();
+        void nextSlice(int);
+        void previousSlice(int);
+
         void clearAll();
+
+        void createCoronal(int);
+        void createSaggital(int);
 
     private:
         std::vector<DCMHeader*> images;
@@ -24,6 +29,16 @@ class DCMScan {
         std::vector<DCMHeader*> doses;
         int currentSlice;
         int maxSlices;
+        std::vector<int> slices;
+
+        void buildIndex();
+        DCMHeader* getSlice(int);
+        QImage* sagImage;
+        QImage* corImage;
+
+    signals:
+        void updateCoronalView();
 };
+
 
 #endif // DCMSCAN_H
